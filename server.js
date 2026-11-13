@@ -15,7 +15,7 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024;
 const MAX_PROFILE_PICTURE_SIZE = 5 * 1024 * 1024;
 const MAX_STATUS_VIDEO_SIZE = 50 * 1024 * 1024;
 const MAX_ATTACHMENTS = 5;
-const AVATARS = ["🌙", "🌿", "☀️", "🌊", "🪻", "🦊", "🐻", "🐱", "🐼", "🦋", "🍄", "✨"];
+const AVATARS = ["🌙", "🌿", "☀️", "🌊", "🪻", "🦊", "🐻", "🐱", "🐼", "🦋", "🍄", "✨", "🌸", "🌻", "🍀", "⭐", "🐸", "🐰", "🐧", "🐨", "🐯", "🦄", "🐢", "🐬", "🍓", "🍒", "🍉", "🍑", "🍕", "🍩", "🧁", "🎀", "🧸", "🎧", "🎮", "🔮", "💎", "🪐", "🔥", "💜"];
 const INLINE_TYPES = new Set(["image/avif", "image/jpeg", "image/png", "image/gif", "image/webp", "application/pdf", "audio/mpeg", "audio/ogg", "audio/wav", "video/mp4", "video/ogg", "video/webm"]);
 const STATUS_VIDEO_EXTENSIONS = new Map([
   ["video/mp4", ".mp4"],
