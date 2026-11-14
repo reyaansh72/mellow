@@ -1,6 +1,7 @@
 const crypto = require("node:crypto");
 const fs = require("node:fs/promises");
 const http = require("node:http");
+const os = require("node:os");
 const path = require("node:path");
 const express = require("express");
 const multer = require("multer");
@@ -182,6 +183,24 @@ async function start() {
   });
 
   app.get("/api/stats", (req, res) => res.json(stats()));
+
+  app.get("/api/server-status", (_req, res) => {
+    const totalMemoryBytes = os.totalmem();
+    const freeMemoryBytes = os.freemem();
+    res.set("Cache-Control", "no-store").json({
+      status: "online",
+      appUptimeSeconds: Math.floor(process.uptime()),
+      hostUptimeSeconds: Math.floor(os.uptime()),
+      nodeVersion: process.version,
+      platform: os.platform(),
+      architecture: os.arch(),
+      cpuCores: os.cpus().length,
+      processMemoryBytes: process.memoryUsage().rss,
+      totalMemoryBytes,
+      freeMemoryBytes,
+      observedAt: new Date().toISOString()
+    });
+  });
 
   app.get("/api/members", (req, res) => {
     const onlineUsers = new Set(onlineSockets.values());

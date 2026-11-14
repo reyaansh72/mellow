@@ -50,6 +50,7 @@ Restart with a different value to preview another theme. Clear the override to r
 - Automatic local-time themes: light green in the morning, yellow in the afternoon, orange in the evening, and light blue at night, using the same tree illustration with a matching palette.
 - Community menu with a searchable member list, copy-link, sidebar, and scroll-to-latest actions.
 - Searchable Status Page with inline video playback, likes, comments, uploader profiles, and shareable status cards in chat. Open a shared card to jump to that status.
+- Server Status dashboard with live service health, app and host uptime, Node.js runtime, platform, CPU core count, and memory usage. Metrics refresh every 30 seconds.
 - Up to five attachments per message, 10 MB each. Images, audio, video, and PDFs can be previewed; attachments also have download controls and common file types use distinct icons.
 - Profile pictures accept JPEG, PNG, GIF, WebP, or AVIF files up to 5 MB. Status videos accept MP4, WebM, or Ogg up to 50 MB; captions and comments are limited to 500 characters.
 - Messages, profiles, uploaded files, and statuses are stored locally in the `data/` directory.
@@ -62,3 +63,7 @@ Restart with a different value to preview another theme. Clear the override to r
 4. Use the search field to filter posts by caption or uploader.
 
 Videos are stored as uploaded; the server does not transcode them. Playback depends on browser codec support.
+
+## Server Status
+
+Select **Server Status** in the sidebar to view current host and application metrics. The dashboard reads The `/api/server-status` endpoint and refreshes automatically while open.
