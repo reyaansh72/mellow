@@ -461,6 +461,9 @@
     .menu-item { color: #415846; }
     .menu-item:hover { background: rgba(82,151,91,.09); }
     .menu-item svg { color: #6b8d70; }
+    .menu-item.logout-item { color: #a7544d; }
+    .menu-item.logout-item svg { color: #b85f56; }
+    .menu-item.logout-item:hover { background: rgba(184,95,86,.09); }
     .menu-count,.menu-feedback { color: #788b7b; }
     .menu-separator { background: rgba(57,86,59,.12); }
     .picture-upload { border-color: rgba(64,112,68,.22); color: #426448; background: rgba(255,255,255,.52); }
@@ -572,6 +575,10 @@
             <button class="menu-item" type="button" data-action="copy-link">
               <svg viewBox="0 0 24 24" fill="none"><path d="M10 13.5a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1.7 1.7M14 10.5a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 19.2l1.7-1.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
               <span>Copy chat link</span>
+            </button>
+            <button class="menu-item logout-item" type="button" data-action="logout">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M10 17l5-5-5-5m5 5H3m9-9h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Log out</span>
             </button>
             <div class="menu-feedback" id="menu-feedback" role="status"></div>
           </div>
@@ -983,6 +990,19 @@
       function showLogin() {
         loginScreen.hidden = false;
         usernameInput.focus();
+      }
+
+      function logout() {
+        localStorage.removeItem(STORAGE_KEY);
+        if (socket) {
+          socket.disconnect();
+          socket = null;
+        }
+        currentUser = null;
+        menuDropdown.hidden = true;
+        menuButton.setAttribute("aria-expanded", "false");
+        setConnected(false);
+        showLogin();
       }
 
       function renderPendingFiles() {
@@ -1773,6 +1793,8 @@
           profilePictureInput.click();
         } else if (action === "change-username") {
           openUsernameEditor();
+        } else if (action === "logout") {
+          logout();
         } else if (action === "latest") {
           if (currentPage === "status") statusPage.scrollTo({ top: statusPage.scrollHeight, behavior: "smooth" });
           else feed.scrollTo({ top: feed.scrollHeight, behavior: "smooth" });
