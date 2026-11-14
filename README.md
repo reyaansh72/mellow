@@ -47,7 +47,7 @@ Restart with a different value to preview another theme. Clear the override to r
 - Change your username or profile photo from the community menu. Name changes update existing chat messages and status comments.
 - Real-time community messages and online/registered-user counts.
 - Expandable sidebar, responsive phone/tablet/desktop layouts, and a separate SVG tree background.
-- Automatic local-time themes: light green in the morning, yellow in the afternoon, orange in the evening, and dark purple at night, each using the same tree illustration with a matching palette.
+- Automatic local-time themes: light green in the morning, yellow in the afternoon, orange in the evening, and light blue at night, using the same tree illustration with a matching palette.
 - Community menu with a searchable member list, copy-link, sidebar, and scroll-to-latest actions.
 - Searchable Status Page with inline video playback, likes, comments, uploader profiles, and shareable status cards in chat. Open a shared card to jump to that status.
 - Up to five attachments per message, 10 MB each. Images, audio, video, and PDFs can be previewed; attachments also have download controls and common file types use distinct icons.
