@@ -1,6 +1,6 @@
 # Mellow Community Chat
 
-A responsive, light-green community chat built with Node.js, Express, and Socket.IO.
+A responsive community chat built with Node.js, Express, and Socket.IO.
 
 ## Run locally
 
@@ -16,12 +16,38 @@ A responsive, light-green community chat built with Node.js, Express, and Socket
 
 The server listens on `127.0.0.1` and uses port `3000` by default. Set the `PORT` environment variable to use another port.
 
+## Preview a time theme
+
+By default, the theme follows the computer's local time and updates automatically. To preview a specific theme, set `TEST_TIME` before starting the server; supported values are `morning`, `afternoon`, `evening`, and `night`.
+
+PowerShell:
+
+```powershell
+$env:TEST_TIME = "afternoon"
+npm start
+```
+
+In Command Prompt:
+
+```bat
+set TEST_TIME=night&& npm start
+```
+
+In macOS/Linux shells:
+
+```sh
+TEST_TIME=evening npm start
+```
+
+Restart with a different value to preview another theme. Clear the override to return to automatic local-time switching (PowerShell: `Remove-Item Env:TEST_TIME`).
+
 ## Features
 
 - Username and profile-icon or photo setup on first visit; the browser remembers the profile.
 - Change your username or profile photo from the community menu. Name changes update existing chat messages and status comments.
 - Real-time community messages and online/registered-user counts.
 - Expandable sidebar, responsive phone/tablet/desktop layouts, and a separate SVG tree background.
+- Automatic local-time themes: light green in the morning, yellow in the afternoon, orange in the evening, and dark purple at night, each using the same tree illustration with a matching palette.
 - Community menu with a searchable member list, copy-link, sidebar, and scroll-to-latest actions.
 - Searchable Status Page with inline video playback, likes, comments, uploader profiles, and shareable status cards in chat. Open a shared card to jump to that status.
 - Up to five attachments per message, 10 MB each. Images, audio, video, and PDFs can be previewed; attachments also have download controls and common file types use distinct icons.

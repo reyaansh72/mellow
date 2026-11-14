@@ -11,6 +11,8 @@ const PUBLIC_DIR = path.join(ROOT, "public");
 const DATA_DIR = path.join(ROOT, "data");
 const UPLOADS_DIR = path.join(DATA_DIR, "uploads");
 const PORT = Number(process.env.PORT) || 3000;
+const TEST_TIME = (process.env.TEST_TIME || "").trim().toLowerCase();
+const VALID_TEST_TIMES = new Set(["morning", "afternoon", "evening", "night"]);
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 const MAX_PROFILE_PICTURE_SIZE = 5 * 1024 * 1024;
 const MAX_STATUS_VIDEO_SIZE = 50 * 1024 * 1024;
@@ -65,6 +67,10 @@ async function writeJson(filePath, value) {
 }
 
 async function start() {
+  if (TEST_TIME && !VALID_TEST_TIMES.has(TEST_TIME)) {
+    throw new Error("TEST_TIME must be morning, afternoon, evening, or night.");
+  }
+
   await fs.mkdir(UPLOADS_DIR, { recursive: true });
 
   const users = await readJson(path.join(DATA_DIR, "users.json"), []);
@@ -463,6 +469,15 @@ async function start() {
     }
   });
 
+  app.get("/", async (_req, res, next) => {
+    try {
+      const page = await fs.readFile(path.join(PUBLIC_DIR, "index.html"), "utf8");
+      const themeMeta = `<meta name="mellow-test-time" content="${TEST_TIME || "auto"}">`;
+      res.type("html").send(page.replace('<meta name="mellow-test-time" content="auto">', themeMeta));
+    } catch (error) {
+      next(error);
+    }
+  });
   app.use(express.static(PUBLIC_DIR));
 
   io.use((socket, next) => {
